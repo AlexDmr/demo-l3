@@ -3,14 +3,15 @@
 </button>
 <input type="color" #color/>
 
-<svg width="400" height="400">
+<svg width="400" height="400"
+     (click)="add($event, color.value)">
   <circle *ngFor="let obj of objects"
           [attr.cx]="obj.x"
           [attr.cy]="obj.y"
           [attr.r]="obj.r"
           [attr.fill]="obj.color"
           stroke="black"
-          (click)="remove(obj)"
+          (click)="remove(obj); $event.stopPropagation()"
   ></circle>
 </svg>
 

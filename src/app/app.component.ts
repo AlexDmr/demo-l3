@@ -12,6 +12,17 @@ export class AppComponent {
   constructor(private newton: NewtonService) {
   }
 
+  add(evt: MouseEvent, color: string) {
+    this.newton.append( {
+      x: evt.offsetX,
+      y: evt.offsetY,
+      vx: 0,
+      vy: 0,
+      r: 20,
+      color: color
+    } );
+  }
+
   appendBall(color: string) {
     this.newton.append( {
       x: Math.random() * 400,
