@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import {NewtonService} from './newton.service';
+import {NewtonObject} from './newton.data';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,26 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'demo-l3';
+
+  constructor(private newton: NewtonService) {
+  }
+
+  appendBall(color: string) {
+    this.newton.append( {
+      x: Math.random() * 400,
+      y: 200 + Math.random() * 200,
+      vx: 0,
+      vy: 0,
+      r: 20,
+      color: color
+    } );
+  }
+
+  remove(obj: NewtonObject) {
+    this.newton.remove(obj);
+  }
+
+  get objects(): NewtonObject[] {
+    return this.newton.objects;
+  }
 }
